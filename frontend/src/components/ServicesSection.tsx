@@ -3,7 +3,7 @@
 import React from 'react';
 import { 
   GraduationCap, Award, Stethoscope, Pill, Utensils, Heart, 
-  Trees, Droplet, Compass, Woman, Briefcase, AlertTriangle, 
+  Trees, Droplet, Compass, Briefcase, AlertTriangle, 
   Building2, Laptop, Brain, Dog 
 } from 'lucide-react';
 

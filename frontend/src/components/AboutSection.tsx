@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Target, Eye, HeartHandshake, ShieldCheck, Sparkles, Compass, Users } from 'lucide-react';
 
 interface TeamMember {
-  id: int;
+  id: number;
   name: string;
   role: string;
   bio: string;
