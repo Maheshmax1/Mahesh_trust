@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { ShieldCheck, FileText, Download, PieChart, TrendingUp, CheckCircle } from 'lucide-react';
+import React from 'react';
+import { FileText, Download, PieChart, TrendingUp, CheckCircle } from 'lucide-react';
 
 interface Report {
   id: number;
@@ -12,14 +12,13 @@ interface Report {
 }
 
 export const TransparencySection: React.FC = () => {
-  const [reports, setReports] = useState<Report[]>([]);
-
-  useEffect(() => {
-    fetch('http://localhost:8000/api/reports')
-      .then(res => res.json())
-      .then(data => setReports(data))
-      .catch(err => console.log('Error fetching reports:', err));
-  }, []);
+  // Hardcoded static data for pure client-side hosting on GitHub Pages
+  const reports: Report[] = [
+    { id: 1, title: "Annual Financial & Impact Report 2025", category: "Annual Report", year: "2025", file_url: "#" },
+    { id: 2, title: "Audited Financial Statements 2024-25", category: "Audit Report", year: "2025", file_url: "#" },
+    { id: 3, title: "80G & 12A Tax Exemption Certificate", category: "Certificate", year: "2024", file_url: "#" },
+    { id: 4, title: "FCRA Registration & Compliance Filing", category: "Compliance Document", year: "2025", file_url: "#" }
+  ];
 
   const financialBreakdown = [
     { label: 'Direct Program Execution (Healthcare & Education)', percent: 85, color: 'bg-emerald-500' },

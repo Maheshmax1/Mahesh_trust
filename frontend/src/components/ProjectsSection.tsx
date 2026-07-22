@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { MapPin, Users, Wallet, CheckCircle2, Clock } from 'lucide-react';
 
 interface Project {
@@ -17,14 +17,57 @@ interface Project {
 }
 
 export const ProjectsSection: React.FC = () => {
-  const [projects, setProjects] = useState<Project[]>([]);
-
-  useEffect(() => {
-    fetch('http://localhost:8000/api/projects')
-      .then(res => res.json())
-      .then(data => setProjects(data))
-      .catch(err => console.log('Error fetching projects:', err));
-  }, []);
+  // Hardcoded static data for pure client-side hosting on GitHub Pages
+  const projects: Project[] = [
+    {
+      id: 1,
+      name: "Project Vidya: Rural Education Support",
+      description: "Providing free learning material, digital tabs, and evening coaching classes to underprivileged children in remote villages.",
+      status: "Ongoing",
+      location: "Kanchipuram & Tiruvallur Districts",
+      budget: "₹5,00,000",
+      beneficiaries: "2,500+ Students",
+      progress: 75,
+      image_url: "https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800&auto=format&fit=crop",
+      impact_metrics: "25 Schools Reached, 15 Digital Classrooms Built"
+    },
+    {
+      id: 2,
+      name: "Project Suvaya: Community Food Kitchens",
+      description: "Serving cooked, wholesome, nutritious meals daily to homeless elders and daily wage workers across Tamil Nadu.",
+      status: "Ongoing",
+      location: "Chennai Metro Region",
+      budget: "₹8,00,000",
+      beneficiaries: "1,000+ Daily Meals",
+      progress: 90,
+      image_url: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=800&auto=format&fit=crop",
+      impact_metrics: "3,50,000+ Meals Served to date"
+    },
+    {
+      id: 3,
+      name: "Project Shakti: Women Skill Training",
+      description: "Tailoring, handicraft making, and micro-entrepreneurship workshops empowering rural women toward economic freedom.",
+      status: "Ongoing",
+      location: "Madurai & Tirunelveli",
+      budget: "₹4,00,000",
+      beneficiaries: "450+ Women Trained",
+      progress: 60,
+      image_url: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?q=80&w=800&auto=format&fit=crop",
+      impact_metrics: "180 Self-Help Sewing Units Started"
+    },
+    {
+      id: 4,
+      name: "Project Pachai: Clean & Green Earth",
+      description: "Massive tree plantation drives, seed ball creation workshops, and rainwater harvesting installation in suburban schools.",
+      status: "Completed",
+      location: "Coimbatore & Salem",
+      budget: "₹3,50,000",
+      beneficiaries: "10,000+ Saplings Planted",
+      progress: 100,
+      image_url: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=800&auto=format&fit=crop",
+      impact_metrics: "12,500 Trees Growing Strong"
+    }
+  ];
 
   const ongoing = projects.filter(p => p.status === 'Ongoing');
   const completed = projects.filter(p => p.status === 'Completed');
@@ -63,7 +106,7 @@ export const ProjectsSection: React.FC = () => {
               >
                 <div className="md:w-1/2 relative h-56 md:h-auto">
                   <img
-                    src={proj.image_url || 'https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=600&auto=format&fit=crop'}
+                    src={proj.image_url}
                     alt={proj.name}
                     className="w-full h-full object-cover"
                   />
@@ -134,7 +177,7 @@ export const ProjectsSection: React.FC = () => {
                 >
                   <div className="flex items-center space-x-4">
                     <img
-                      src={comp.image_url || 'https://via.placeholder.com/150'}
+                      src={comp.image_url}
                       alt={comp.name}
                       className="w-20 h-20 rounded-xl object-cover shrink-0"
                     />

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Target, Eye, HeartHandshake, ShieldCheck, Sparkles, Compass, Users } from 'lucide-react';
 
 interface TeamMember {
@@ -12,14 +12,30 @@ interface TeamMember {
 }
 
 export const AboutSection: React.FC = () => {
-  const [team, setTeam] = useState<TeamMember[]>([]);
-
-  useEffect(() => {
-    fetch('http://localhost:8000/api/team')
-      .then(res => res.json())
-      .then(data => setTeam(data))
-      .catch(err => console.log('Failed fetching team:', err));
-  }, []);
+  // Hardcoded static data for pure client-side hosting on GitHub Pages
+  const team: TeamMember[] = [
+    {
+      id: 1,
+      name: "Mahesh Shanmugam",
+      role: "Founder & Managing Trustee",
+      bio: "Social entrepreneur driven by compassion, dedicated to building sustainable community solutions.",
+      image_url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop"
+    },
+    {
+      id: 2,
+      name: "Dr. Aruna Sundaram",
+      role: "Director of Medical Relief",
+      bio: "Senior Medical Officer leading mobile health units and rural emergency response teams.",
+      image_url: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=600&auto=format&fit=crop"
+    },
+    {
+      id: 3,
+      name: "Rajesh Kumar",
+      role: "Head of Education Initiatives",
+      bio: "Former Principal passionate about digital literacy and equal access for rural children.",
+      image_url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop"
+    }
+  ];
 
   const coreValues = [
     { title: 'Compassion', desc: 'Empathy drives every single initiative we undertake for human dignity.', icon: HeartHandshake },
@@ -179,7 +195,7 @@ export const AboutSection: React.FC = () => {
               {team.map((mem) => (
                 <div key={mem.id} className="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-lg transition-all text-center">
                   <img
-                    src={mem.image_url || 'https://via.placeholder.com/150'}
+                    src={mem.image_url}
                     alt={mem.name}
                     className="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-emerald-50 dark:border-slate-700 shadow-md"
                   />

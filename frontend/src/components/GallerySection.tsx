@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { Maximize2, X, Image as ImageIcon } from 'lucide-react';
+import React, { useState } from 'react';
+import { Maximize2, X } from 'lucide-react';
 
 interface GalleryItem {
   id: number;
@@ -12,18 +12,18 @@ interface GalleryItem {
 }
 
 export const GallerySection: React.FC = () => {
-  const [gallery, setGallery] = useState<GalleryItem[]>([]);
+  // Hardcoded static data for pure client-side hosting on GitHub Pages
+  const gallery: GalleryItem[] = [
+    { id: 1, title: "Free Health Camp Distribution", category: "Medical Camps", media_type: "photo", url: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop" },
+    { id: 2, title: "Distributing Books & Tabs", category: "Education", media_type: "photo", url: "https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800&auto=format&fit=crop" },
+    { id: 3, title: "Plantation Drive 2025", category: "Tree Plantation", media_type: "photo", url: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=800&auto=format&fit=crop" },
+    { id: 4, title: "Elderly Meals Service", category: "Community Programs", media_type: "photo", url: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=800&auto=format&fit=crop" }
+  ];
+
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
 
   const categories = ['All', 'Medical Camps', 'Education', 'Tree Plantation', 'Community Programs'];
-
-  useEffect(() => {
-    fetch('http://localhost:8000/api/gallery')
-      .then(res => res.json())
-      .then(data => setGallery(data))
-      .catch(err => console.log('Error fetching gallery:', err));
-  }, []);
 
   const filtered = activeCategory === 'All'
     ? gallery

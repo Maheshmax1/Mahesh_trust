@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Calendar, MapPin, Tag, ArrowRight } from 'lucide-react';
 
 interface Event {
@@ -15,15 +15,41 @@ interface Event {
 }
 
 export const EventsSection: React.FC = () => {
-  const [events, setEvents] = useState<Event[]>([]);
-  const [activeTab, setActiveTab] = useState<'upcoming' | 'past'>('upcoming');
+  // Hardcoded static data for pure client-side hosting on GitHub Pages
+  const events: Event[] = [
+    {
+      id: 1,
+      title: "Mega Free Medical & Eye Camp",
+      description: "Comprehensive general health checkups, free prescription glasses distribution, and blood pressure screening.",
+      date: "August 15, 2026",
+      location: "Community Hall, Ambattur, Chennai",
+      image_url: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop",
+      category: "Healthcare",
+      is_past: false
+    },
+    {
+      id: 2,
+      title: "Green Warriors Tree Planting Marathon",
+      description: "Join over 200 volunteers to plant 1,000 native tree saplings along lake bunds.",
+      date: "September 5, 2026",
+      location: "Chembarambakkam Lake Area",
+      image_url: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=800&auto=format&fit=crop",
+      category: "Environment",
+      is_past: false
+    },
+    {
+      id: 3,
+      title: "Annual Charity Youth Run & Awareness Walk",
+      description: "5K Marathon raising awareness for child protection and higher education scholarships.",
+      date: "May 10, 2026",
+      location: "Marina Beach Road, Chennai",
+      image_url: "https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?q=80&w=800&auto=format&fit=crop",
+      category: "Community",
+      is_past: true
+    }
+  ];
 
-  useEffect(() => {
-    fetch('http://localhost:8000/api/events')
-      .then(res => res.json())
-      .then(data => setEvents(data))
-      .catch(err => console.log('Error fetching events:', err));
-  }, []);
+  const [activeTab, setActiveTab] = useState<'upcoming' | 'past'>('upcoming');
 
   const upcoming = events.filter(e => !e.is_past);
   const past = events.filter(e => e.is_past);
@@ -78,12 +104,12 @@ export const EventsSection: React.FC = () => {
               <div>
                 <div className="relative h-48">
                   <img
-                    src={evt.image_url || 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=600&auto=format&fit=crop'}
+                    src={evt.image_url}
                     alt={evt.title}
                     className="w-full h-full object-cover"
                   />
                   <span className="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-md text-white text-xs font-semibold px-3 py-1 rounded-full flex items-center space-x-1">
-                    <Tag className="w-3 h-3 text-accent" />
+                    <Tag className="w-3.5 h-3.5 text-accent" />
                     <span>{evt.category}</span>
                   </span>
                 </div>

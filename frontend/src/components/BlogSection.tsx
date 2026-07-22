@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 
 interface BlogPost {
@@ -15,14 +15,29 @@ interface BlogPost {
 }
 
 export const BlogSection: React.FC = () => {
-  const [blogs, setBlogs] = useState<BlogPost[]>([]);
-
-  useEffect(() => {
-    fetch('http://localhost:8000/api/blogs')
-      .then(res => res.json())
-      .then(data => setBlogs(data))
-      .catch(err => console.log('Error fetching blogs:', err));
-  }, []);
+  // Hardcoded static data for pure client-side hosting on GitHub Pages
+  const blogs: BlogPost[] = [
+    {
+      id: 1,
+      title: "Empowering the Next Generation: Why Digital Literacy in Villages Matters",
+      subtitle: "Closing the technology gap between rural and urban classrooms across Tamil Nadu.",
+      content: "In today's digital era, access to technology is not a luxury—it is a fundamental right...",
+      category: "Education",
+      author: "Mahesh Trust Team",
+      image_url: "https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800&auto=format&fit=crop",
+      created_at: new Date().toISOString()
+    },
+    {
+      id: 2,
+      title: "Preventive Healthcare at the Doorstep of Rural Communities",
+      subtitle: "How mobile health clinics are reducing preventable chronic diseases.",
+      content: "For thousands living in remote hamlets, reaching a civil hospital requires traveling tens of kilometers...",
+      category: "Healthcare",
+      author: "Mahesh Trust Team",
+      image_url: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop",
+      created_at: new Date().toISOString()
+    }
+  ];
 
   return (
     <section className="py-20 bg-white dark:bg-slate-900 relative">
@@ -50,7 +65,7 @@ export const BlogSection: React.FC = () => {
               <div>
                 <div className="relative h-56">
                   <img
-                    src={post.image_url || 'https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=600&auto=format&fit=crop'}
+                    src={post.image_url}
                     alt={post.title}
                     className="w-full h-full object-cover"
                   />

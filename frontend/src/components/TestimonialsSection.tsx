@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Quote, Star } from 'lucide-react';
 
 interface Testimonial {
@@ -13,14 +13,33 @@ interface Testimonial {
 }
 
 export const TestimonialsSection: React.FC = () => {
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-
-  useEffect(() => {
-    fetch('http://localhost:8000/api/testimonials')
-      .then(res => res.json())
-      .then(data => setTestimonials(data))
-      .catch(err => console.log('Error fetching testimonials:', err));
-  }, []);
+  // Hardcoded static data for pure client-side hosting on GitHub Pages
+  const testimonials: Testimonial[] = [
+    {
+      id: 1,
+      name: "Saraswathi M.",
+      role: "Beneficiary - Skill Development",
+      story: "Thanks to Project Shakti, I set up my own tailoring shop. I can now fund my children's schooling with pride.",
+      type: "Beneficiary Story",
+      image_url: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop"
+    },
+    {
+      id: 2,
+      name: "Karthik Raja",
+      role: "Volunteer Lead",
+      story: "Volunteering with Mahesh Trust gave my weekends real meaning. Seeing smiles on kids' faces as they open their learning kits is priceless.",
+      type: "Volunteer Review",
+      image_url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop"
+    },
+    {
+      id: 3,
+      name: "Anand Vishwanathan",
+      role: "Regular Monthly Donor",
+      story: "The transparency of Mahesh Trust is unmatched. I receive detailed reports showing exactly how my monthly ₹2,500 impacts rural lives.",
+      type: "Donor Review",
+      image_url: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&auto=format&fit=crop"
+    }
+  ];
 
   return (
     <section className="py-20 bg-white dark:bg-slate-900 relative">
@@ -39,7 +58,7 @@ export const TestimonialsSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Carousel Grid */}
+        {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((item) => (
             <div
@@ -62,7 +81,7 @@ export const TestimonialsSection: React.FC = () => {
 
               <div className="flex items-center space-x-4 pt-4 border-t border-gray-200 dark:border-gray-700">
                 <img
-                  src={item.image_url || 'https://via.placeholder.com/100'}
+                  src={item.image_url}
                   alt={item.name}
                   className="w-12 h-12 rounded-full object-cover border-2 border-primary"
                 />

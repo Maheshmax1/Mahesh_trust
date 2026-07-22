@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { Building, Award } from 'lucide-react';
+import React from 'react';
+import { Building } from 'lucide-react';
 
 interface Partner {
   id: number;
@@ -11,14 +11,14 @@ interface Partner {
 }
 
 export const PartnersSection: React.FC = () => {
-  const [partners, setPartners] = useState<Partner[]>([]);
-
-  useEffect(() => {
-    fetch('http://localhost:8000/api/partners')
-      .then(res => res.json())
-      .then(data => setPartners(data))
-      .catch(err => console.log('Error fetching partners:', err));
-  }, []);
+  // Hardcoded static data for pure client-side hosting on GitHub Pages
+  const partners: Partner[] = [
+    { id: 1, name: "Apollo Hospitals Foundation", category: "Hospital", logo_url: "https://via.placeholder.com/150?text=Apollo+Health" },
+    { id: 2, name: "Tata Trusts CSR", category: "Corporate CSR", logo_url: "https://via.placeholder.com/150?text=Tata+CSR" },
+    { id: 3, name: "Government of Tamil Nadu - Social Welfare", category: "Government", logo_url: "https://via.placeholder.com/150?text=TN+Govt" },
+    { id: 4, name: "IIT Madras Alumni Network", category: "Educational Institution", logo_url: "https://via.placeholder.com/150?text=IITM+Alumni" },
+    { id: 5, name: "Rotary Club International", category: "NGO", logo_url: "https://via.placeholder.com/150?text=Rotary" }
+  ];
 
   return (
     <section className="py-20 bg-white dark:bg-slate-900 relative">
